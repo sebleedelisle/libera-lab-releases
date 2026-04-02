@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libera Lab Downloads</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            color: #ff69b4;
+        }
+        .subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .releases {
+            width: 100%;
+            max-width: 700px;
+        }
+        .release {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a4a;
+        }
+        .release.latest {
+            border-color: #ff69b4;
+        }
+        .release-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .version {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .tag {
+            background: #ff69b4;
+            color: #1a1a2e;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+        .downloads {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2a2a4a;
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            transition: background 0.2s;
+        }
+        .download-btn:hover {
+            background: #3a3a5a;
+        }
+        .os-icon {
+            font-size: 1.2em;
+        }
+        .no-releases {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Libera Lab</h1>
+    <p class="subtitle">Laser controller test utility</p>
+    <div class="releases" id="releases">
+        <div class="no-releases">Loading releases...</div>
+    </div>
+
+    <script>
+        // Releases data is injected by CI as a JSON file
+        fetch('releases.json')
+            .then(r => r.json())
+            .then(releases => {
+                const container = document.getElementById('releases');
+                if (!releases.length) {
+                    container.innerHTML = '<div class="no-releases">No releases yet.</div>';
+                    return;
+                }
+                container.innerHTML = releases.map((rel, i) => `
+                    <div class="release ${i === 0 ? 'latest' : ''}">
+                        <div class="release-header">
+                            <span class="version">${rel.version}</span>
+                            ${i === 0 ? '<span class="tag">Latest</span>' : ''}
+                        </div>
+                        <div class="date">${rel.date}</div>
+                        <div class="downloads">
+                            ${rel.macos ? `<a class="download-btn" href="${rel.macos}"><span class="os-icon">&#63743;</span> macOS (DMG)</a>` : ''}
+                            ${rel.windows ? `<a class="download-btn" href="${rel.windows}"><span class="os-icon">&#8862;</span> Windows (ZIP)</a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(() => {
+                document.getElementById('releases').innerHTML =
+                    '<div class="no-releases">No releases yet.</div>';
+            });
+    </script>
+</body>
+</html>
