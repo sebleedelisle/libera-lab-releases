@@ -1,5 +1,11 @@
 [
   {
+    "version": "v0.4.0",
+    "date": "2026-04-03",
+    "macos": "downloads/v0.4.0/libera-lab-macos.dmg",
+    "windows": "downloads/v0.4.0/libera-lab-windows.zip"
+  },
+  {
     "version": "v0.3.4",
     "date": "2026-04-03",
     "macos": "downloads/v0.3.4/libera-lab-macos.dmg",
