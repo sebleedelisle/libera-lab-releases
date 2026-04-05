@@ -7,13 +7,6 @@
     "windows": "downloads/v0.4.5/libera-lab-windows.zip"
   },
   {
-    "version": "v0.4.4",
-    "date": "2026-04-05",
-    "macos": "downloads/v0.4.4/libera-lab-macos.dmg",
-    "linux": "downloads/v0.4.4/libera-lab-linux.tar.gz",
-    "windows": "downloads/v0.4.4/libera-lab-windows.zip"
-  },
-  {
     "version": "v0.4.3",
     "date": "2026-04-03",
     "macos": "downloads/v0.4.3/libera-lab-macos.dmg",
