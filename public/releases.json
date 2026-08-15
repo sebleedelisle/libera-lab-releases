@@ -1,5 +1,12 @@
 [
   {
+    "version": "v1.2.0",
+    "date": "2026-08-15",
+    "macos": "downloads/v1.2.0/libera-lab-macos.dmg",
+    "linux": "downloads/v1.2.0/libera-lab-linux.AppImage",
+    "windows": "downloads/v1.2.0/libera-lab-windows.zip"
+  },
+  {
     "version": "v1.1.0",
     "date": "2026-07-14",
     "macos": "downloads/v1.1.0/libera-lab-macos.dmg",
